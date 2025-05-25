@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You Amina</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: pink;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .message {
+      position: absolute;
+      z-index: 10;
+      font-size: 2em;
+      color: white;
+      text-shadow: 2px 2px 6px #ff69b4;
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .heart {
+      position: absolute;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      background: var(--heart-color, pink);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: var(--heart-color, pink);
+    }
+
+    .heart::before {
+      top: -50%;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -50%;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="message">I love you Amina</div>
+
+  <script>
+    const heartCount = 100;
+    const colors = ['#ff69b4', '#ff1493', '#ff85a2', '#ffc0cb', '#ff4d6d'];
+
+    for (let i = 0; i < heartCount; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+
+      const size = 10 + Math.random() * 20;
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
+
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.setProperty('--heart-color', color);
+
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      heart.style.opacity = Math.random();
+      heart.style.zIndex = 1;
+
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
